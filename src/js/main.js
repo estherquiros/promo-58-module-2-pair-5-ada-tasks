@@ -4,6 +4,7 @@ const formAddTask = document.querySelector(".js_form-add-task");
 const formFilter = document.querySelector(".js_formFilter");
 const taskInput = document.querySelector(".js_taskInput");
 const button = document.querySelector(".js_button");
+const taskList = document.querySelector("#taskList");
 
 const tasks = [
   { name: "Recoger setas en el campo", completed: true, id: 1 },
@@ -20,12 +21,35 @@ button.addEventListener("click", (ev) => {
   ev.preventDefault();
 
   const addTask = taskInput.value;
-
-  tasks.push({ name: addTask, completed: false, id: tasks.length + 1 });
+  const taskName = addTask.trim();
   console.log(addTask);
+
+  if (taskName === "") {
+    return;
+  }
+
+  const newTask = {
+    name: taskName,
+    completed: false,
+    id: tasks.length + 1,
+  };
+
+  tasks.push(newTask);
+  paintTasks(tasks, taskList);
+  taskInput.value = "";
 });
 
-for (const task of tasks) {
-  // pintar la tarea en la lista
-  console.log(task.name);
-}
+const paintTasks = (tasks, taskList) => {
+  let listElements = "";
+
+  for (const task of tasks) {
+    // pintar la tarea en la lista
+    listElements += `<li>${task.name}</li>`;
+
+    console.log(task.name);
+  }
+
+  taskList.innerHTML = listElements;
+};
+
+paintTasks(tasks, taskList);
