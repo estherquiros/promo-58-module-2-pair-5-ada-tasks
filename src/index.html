@@ -2,20 +2,35 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>1.N Título</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./scss/main.scss" />
-    <link rel="icon" href="/images/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de tareas</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
-
   <body>
-    <header class="header">
-      <h1 class="title">1.N Título</h1>
-    </header>
-    <main class="main"></main>
+    <main class="container">
+      <h1>Lista de tareas</h1>
+
+      <!-- Formulario para agregar tareas -->
+      <form id="formAddTask" class="form js_formAddTask">
+        <input
+          class="input js_taskInput"
+          type="text"
+          id="taskInput"
+          placeholder="Escribe una nueva tarea..."
+          required
+        />
+        <button class="button js_button" type="submit">Agregar</button>
+      </form>
+
+      <!-- Formulario para filtrar tareas -->
+      <form id="formFilter" class="form js_formFilter">
+        <input type="text" id="filterInput" placeholder="Filtrar tareas..." />
+      </form>
+
+      <!-- Lista de tareas (vacía al inicio) -->
+      <ul id="taskList" class="task-list"></ul>
+    </main>
+
+    <script src="./js/main.js"></script>
   </body>
 </html>
