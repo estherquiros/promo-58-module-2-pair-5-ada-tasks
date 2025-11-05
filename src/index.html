@@ -4,36 +4,39 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lista de tareas</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="./scss/main.scss" />
   </head>
-  <body>
+  <body class="content">
     <main class="container">
-      <h1>Lista de tareas</h1>
+      <div class="select">
+        <h1 class="title">Lista de tareas</h1>
 
-      <!-- Formulario para agregar tareas -->
-      <form id="formAddTask" class="form js_formAddTask">
-        <input
-          class="input js_taskInput"
-          type="text"
-          id="taskInput"
-          placeholder="Escribe una nueva tarea..."
-          required
-        />
-        <button class="button js_button" type="submit">Agregar</button>
-      </form>
-
+        <!-- Formulario para agregar tareas -->
+        <form id="formAddTask" class="form js_formAddTask">
+          <input
+            class="input js_taskInput"
+            type="text"
+            id="taskInput"
+            placeholder="Escribe una nueva tarea..."
+            required
+          />
+          <button class="button js_button" type="submit">Agregar</button>
+        </form>
+      </div>
       <!-- Formulario para filtrar tareas -->
-      <form id="formFilter" class="form js_formFilter">
-        <input
-          class="js_taskText"
-          type="text"
-          id="filterInput"
-          placeholder="Filtrar tareas..."
-        />
-      </form>
+      <div class="filter">
+        <form id="formFilter" class="form js_formFilter">
+          <input
+            class="tasks-text js_taskText"
+            type="text"
+            id="filterInput"
+            placeholder="Filtrar tareas..."
+          />
+        </form>
 
-      <!-- Lista de tareas (vacía al inicio) -->
-      <ul id="taskList" class="task-list js_taskList"></ul>
+        <!-- Lista de tareas (vacía al inicio) -->
+        <ul id="taskList" class="task-list js_taskList"></ul>
+      </div>
     </main>
 
     <script src="./js/main.js"></script>
