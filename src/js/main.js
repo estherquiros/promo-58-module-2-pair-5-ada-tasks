@@ -5,6 +5,8 @@ const formFilter = document.querySelector(".js_formFilter");
 const taskInput = document.querySelector(".js_taskInput");
 const button = document.querySelector(".js_button");
 const taskList = document.querySelector("#taskList");
+const taskText = document.querySelector("#js_taskText");
+const checks = document.querySelectorAll(".js_check");
 
 const tasks = [
   { name: "Recoger setas en el campo", completed: true, id: 1 },
@@ -40,16 +42,36 @@ button.addEventListener("click", (ev) => {
 });
 
 const paintTasks = (tasks, taskList) => {
+  taskList.innerHTML = ""; // limpia antes de repintar
   let listElements = "";
 
   for (const task of tasks) {
     // pintar la tarea en la lista
-    listElements += `<li>${task.name}</li>`;
+    //listElements += `<li>${task.name}</li>`;
 
     console.log(task.name);
+
+    listElements += `
+      <li>
+        <input type="checkbox" class="js_check" data-id="${task.id}" ${
+      task.completed ? "checked" : ""
+    }>
+        <span class="${task.completed ? "line-through" : ""}">${
+      task.name
+    }</span>
+      </li>`;
   }
 
   taskList.innerHTML = listElements;
 };
 
 paintTasks(tasks, taskList);
+
+for (const check of checks) {
+  check.addEventListener("change", (ev) => {
+    const id = parseInt(ev.target.dataset.id);
+    const task = tasks.find((t) => t.id === id);
+    task.completed = ev.target.checked;
+    paintTasks(tasks, taskList); // repinta la lista
+  });
+}
