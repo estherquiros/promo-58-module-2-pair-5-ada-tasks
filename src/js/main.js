@@ -65,13 +65,29 @@ const paintTasks = (tasks, taskList) => {
   taskList.innerHTML = listElements;
 };
 
+taskList.addEventListener("change", (ev) => {
+  //if (!ev.target.classList.contains("js_check")) return;
+
+  const id = parseInt(ev.target.dataset.id); //obtiene el número de identificación de la tarea en la que hiciste clic, para luego buscarla en el array tasks y actualizar su estado (completed).
+  const task = tasks.find((t) => t.id === id); //SI LA QUITO NO TACHA. guarda la tarea específica que queremos modificar.
+
+  task.completed = ev.target.checked;
+  paintTasks(tasks, taskList); // repinta para aplicar o quitar el tachado.
+});
+
 paintTasks(tasks, taskList);
 
-for (const check of checks) {
+/*const checkbox = document.createElement("input");
+checkbox.type = "checkbox";
+checkbox.addEventListener("change", () => {
+  span.classList.toggle("tachado", checkbox.checked);
+});
+
+/* for (const check of checks) {
   check.addEventListener("change", (ev) => {
     const id = parseInt(ev.target.dataset.id);
     const task = tasks.find((t) => t.id === id);
     task.completed = ev.target.checked;
     paintTasks(tasks, taskList); // repinta la lista
   });
-}
+} */
